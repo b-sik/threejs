@@ -21,6 +21,18 @@ h1 {
   z-index: 1;
 }
 
+#render-btn {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
 #scene-container {
   /* tell our scene container to take up the full page */
   position: absolute;

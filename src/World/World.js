@@ -1,5 +1,6 @@
 import { createCamera } from './components/camera.js';
 import { createCube } from './components/cube.js';
+import { createLights } from './components/lights.js';
 import { createScene } from './components/scene.js';
 
 import { createRenderer } from './systems/renderer.js';
@@ -11,6 +12,8 @@ let camera;
 let renderer;
 let scene;
 
+let rotation;
+
 class World {
   // 1. Create an instance of the World app
   constructor(container) {
@@ -18,6 +21,17 @@ class World {
     scene = createScene();
     renderer = createRenderer();
     container.append(renderer.domElement);
+
+    rotation = [-0.5, -0.1, 0.8];
+
+    scene.add(
+      createCube(undefined, undefined, rotation, { color: 'indigo' }),
+      createCube([1, 1, 1], [1.5, 1.5, 1.5], rotation, { color: 'gold' }),
+      createLights('DirectionalLight', 'white', 10, [10, 10, 10])
+    );
+
+    // eslint-disable-next-line no-unused-vars
+    const resizer = new Resizer(container, camera, renderer);
   }
 
   // 2. Render the scene
